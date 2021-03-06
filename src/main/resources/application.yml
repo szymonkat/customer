@@ -1,0 +1,28 @@
+spring:
+    application:
+        name: customer
+    profiles:
+        active: production
+    datasource:
+        url: ${customer.datasource.url}
+        username: ${customer.datasource.username}
+        password: ${customer.datasource.password}
+        driver-class-name: ${customer.datasource.driver-class-name}
+    jpa:
+        properties:
+            hibernate:
+                dialect: ${customer.jpa.properties.hibernate.dialect}
+        database: ${customer.jpa.database}
+        show-sql: ${customer.jpa.show-sql}
+        hibernate:
+            ddl-auto: ${customer.jpa.hibernate.ddl-auto}
+
+# ACTUATOR INFO
+info:
+    app:
+        name: "Customer"
+        version: "0.0.1"
+        profile: ${spring.profiles.active}
+    serverInfo:
+        port: ${customer.server.port}
+
