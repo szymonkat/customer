@@ -6,7 +6,6 @@ import com.kodilla.customer.mapper.CustomerMapper;
 import com.kodilla.customer.service.interfaces.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    @Value("${application.allow-get-accounts}")
-    private boolean allowGetAccounts;
-
     private final CustomerMapper customerMapper;
     private final CustomerService customerService;
 
-    @GetMapping
-    public CustomerDto getAccountsByCustomerId(@RequestParam Long customerId)  {
+    @GetMapping("{customerId}")
+    public GetCustomerResponse getAccountsByCustomerId(@PathVariable Long customerId)  {
         return new GetCustomerResponse(
                 customerMapper.mapToCustomerDto(customerService.getCustomerById(customerId)));
     }

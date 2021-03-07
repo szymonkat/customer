@@ -12,7 +12,7 @@ public class CustomerMapper {
     public Customer mapToCustomer(CustomerDto customerDto) {
         return new Customer(customerDto.getId(),
                 customerDto.getFirstName(),
-                customerDto.getFirstName());
+                customerDto.getLastName());
     }
 
     public CustomerDto mapToCustomerDto(Customer customer) {
