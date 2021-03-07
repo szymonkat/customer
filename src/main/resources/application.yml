@@ -26,3 +26,5 @@ info:
     serverInfo:
         port: ${customer.server.port}
 
+eureka:
+    client: ${eureka-client}
