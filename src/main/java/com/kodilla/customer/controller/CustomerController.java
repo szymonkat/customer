@@ -1,13 +1,20 @@
 package com.kodilla.customer.controller;
 
+import com.kodilla.customer.domain.GetCustomerProductsResponse;
 import com.kodilla.customer.domain.GetCustomerResponse;
+import com.kodilla.customer.dto.AccountDto;
 import com.kodilla.customer.dto.CustomerDto;
 import com.kodilla.customer.mapper.CustomerMapper;
 import com.kodilla.customer.service.interfaces.CustomerService;
+import com.kodilla.customer.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Slf4j
 @RefreshScope
@@ -18,6 +25,7 @@ public class CustomerController {
 
     private final CustomerMapper customerMapper;
     private final CustomerService customerService;
+    private final ProductService productService;
 
     @GetMapping("{customerId}")
     public GetCustomerResponse getAccountsByCustomerId(@PathVariable Long customerId)  {
@@ -29,5 +37,19 @@ public class CustomerController {
     public CustomerDto saveCustomer(@RequestBody CustomerDto customerDto) {
         return customerMapper.mapToCustomerDto(customerService.
                 saveCustomer(customerMapper.mapToCustomer(customerDto)));
+    }
+
+    @GetMapping("/{customerId}/products")
+    public GetCustomerProductsResponse getCustomerProducts(@PathVariable Long customerId) {
+        CustomerDto customerDto = customerMapper.mapToCustomerDto(customerService.getCustomerById(customerId));
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+
+        List<AccountDto> customerAccounts = productService.findCustomerAccounts(customerId);
+
+        return GetCustomerProductsResponse.builder()
+                .customerId(customerDto.getId())
+                .fullName(customerDto.getFirstName() + " " + customerDto.getLastName())
+                .accounts(customerAccounts)
+                .build();
     }
 }
