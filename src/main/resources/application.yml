@@ -28,3 +28,6 @@ info:
 
 eureka:
     client: ${eureka-client}
+
+server:
+    port: 7778

@@ -10,9 +10,7 @@ import com.kodilla.customer.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class CustomerController {
     @GetMapping("/{customerId}/products")
     public GetCustomerProductsResponse getCustomerProducts(@PathVariable Long customerId) {
         CustomerDto customerDto = customerMapper.mapToCustomerDto(customerService.getCustomerById(customerId));
-//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+                //.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 
         List<AccountDto> customerAccounts = productService.findCustomerAccounts(customerId);
 
