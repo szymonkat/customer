@@ -1,6 +1,5 @@
 package com.kodilla.customer.domain;
 
-import com.kodilla.customer.dto.CustomerDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +23,5 @@ public class Customer {
 
     @Column
     private String lastName;
+
 }
