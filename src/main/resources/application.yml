@@ -26,8 +26,15 @@ info:
     serverInfo:
         port: ${customer.server.port}
 
-eureka:
-    client: ${eureka-client}
+#eureka:
+#    client: ${eureka-client}
+
+accounts:
+    ribbon:
+        eureka:
+            enabled: false
+
+        listOfServers: localhost:9999,localhost:9998
 
 server:
     port: 7778
