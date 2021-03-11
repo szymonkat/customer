@@ -3,8 +3,10 @@ package com.kodilla.customer.controller;
 import com.kodilla.customer.domain.GetCustomerProductsResponse;
 import com.kodilla.customer.domain.GetCustomerResponse;
 import com.kodilla.customer.dto.AccountDto;
+import com.kodilla.customer.dto.CardDto;
 import com.kodilla.customer.dto.CustomerDto;
 import com.kodilla.customer.mapper.CustomerMapper;
+import com.kodilla.customer.service.interfaces.CardsService;
 import com.kodilla.customer.service.interfaces.CustomerService;
 import com.kodilla.customer.service.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class CustomerController {
     private final CustomerMapper customerMapper;
     private final CustomerService customerService;
     private final ProductService productService;
+    private final CardsService cardsService;
 
     @GetMapping("{customerId}")
     public GetCustomerResponse getAccountsByCustomerId(@PathVariable Long customerId)  {
@@ -43,11 +46,14 @@ public class CustomerController {
                 //.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
 
         List<AccountDto> customerAccounts = productService.findCustomerAccounts(customerId);
+        List<CardDto> cardDtoList = cardsService.findCustomerCards(customerId);
+
 
         return GetCustomerProductsResponse.builder()
                 .customerId(customerDto.getId())
                 .fullName(customerDto.getFirstName() + " " + customerDto.getLastName())
                 .accounts(customerAccounts)
+                .cards(cardDtoList)
                 .build();
     }
 }

@@ -31,3 +31,7 @@ eureka:
 
 server:
     port: 7778
+
+feign:
+    hystrix:
+        enabled: true
