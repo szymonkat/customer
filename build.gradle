@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.3.RELEASE'
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.6.RELEASE'
     }
 }
 
@@ -22,7 +22,6 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 apply plugin: 'spring-cloud-contract'
-
 
 repositories {
     mavenCentral()
@@ -61,6 +60,15 @@ dependencies {
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
     testImplementation 'com.h2database:h2:1.4.200'
+
+    /* For purposes of error:
+Errors occurred while build effective model from C:\Users\PC\.gradle\caches\modules-2\files-2.1\com.sun.xml.bind\
+ jaxb-osgi\2.2.10\c926a537af564ec047ec6308df1d0d2a03364a86\jaxb-osgi-2.2.10.pom:
+    'dependencyManagement.dependencies.dependency.systemPath' for com.sun:tools:jar
+    must specify an absolute path but is ${tools.jar} in com.sun.xml.bind:jaxb-osgi:2.2.10
+    following dependencies were added*/
+
+    compile group: 'com.sun.xml.bind', name: 'jaxb-osgi', version: '2.3.2'
 }
 
 dependencyManagement {
