@@ -21,8 +21,10 @@ group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+/*
 apply plugin: 'spring-cloud-contract'
 apply plugin: 'maven-publish'
+*/
 
 repositories {
     mavenCentral()
@@ -81,18 +83,18 @@ dependencyManagement {
     }
 }
 
-contracts {
-    testFramework = TestFramework.JUNIT5
-    packageWithBaseClasses = 'com.kodilla.customer'
-}
-
-test {
-    useJUnitPlatform()
-}
-
-task stubsJar(type: Jar) {
-    into("/") {
-        include('**/*.groovy')
-        from("${project.rootDir}/src/main/resources/contracts")
-    }
-}
+//contracts {
+//    testFramework = TestFramework.JUNIT5
+//    packageWithBaseClasses = 'com.kodilla.customer'
+//}
+//
+//test {
+//    useJUnitPlatform()
+//}
+//
+//task stubsJar(type: Jar) {
+//    into("/") {
+//        include('**/*.groovy')
+//        from("${project.rootDir}/src/main/resources/contracts")
+//    }
+//}
