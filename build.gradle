@@ -22,6 +22,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 apply plugin: 'spring-cloud-contract'
+apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
@@ -69,6 +70,9 @@ Errors occurred while build effective model from C:\Users\PC\.gradle\caches\modu
     following dependencies were added*/
 
     compile group: 'com.sun.xml.bind', name: 'jaxb-osgi', version: '2.3.2'
+    implementation 'io.rest-assured:rest-assured:4.3.2'
+    implementation 'io.rest-assured:json-path:4.3.2'
+
 }
 
 dependencyManagement {
