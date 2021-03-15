@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @AutoConfigureStubRunner(
         stubsMode = StubRunnerProperties.StubsMode.LOCAL,
         ids = {
-                "com.kodilla:accounts:+:stubs:9000"
+                "com.kodilla:account:+:stubs:9000"
         }
 )
 class ProductServiceTest {
