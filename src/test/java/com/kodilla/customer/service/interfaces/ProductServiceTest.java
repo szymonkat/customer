@@ -38,6 +38,10 @@ class ProductServiceTest {
 
         //Then
         assertEquals(1, accounts.size());
+//        assertEquals(95213, accounts.get(0).getId());
+//        assertEquals(1, accounts.get(0).getCurrency());
+//        assertEquals(1, accounts.get(0).getNrb());
+//        assertEquals(1, accounts.get(0).getAvailableFunds());
     }
 
 }
